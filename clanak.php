@@ -7,9 +7,17 @@ $baza->spojiDB();
 $rezultat = $baza->selectDB($upit);
 $upit = "select link from slike where clanak = '$id'";
 $slike = $baza->selectDB($upit);
-
 $clanak = mysqli_fetch_assoc($rezultat);
+$tekst = $clanak['tekst'];
 $baza->zatvoriDB();
+
+for($i=0; $i < strlen($tekst); $i++){
+    
+    if(ord($tekst[$i])==10)
+       $tekst = substr_replace($tekst,'<br>', $i, 1);
+    elseif(ord($tekst[$i])==9)
+        $tekst = substr_replace($tekst,'&nbsp;&nbsp;&nbsp;&nbsp;', $i, 1);
+}
 $godina = substr($clanak['kreirano'], 0, 4);
 $mjesec = substr($clanak['kreirano'], 5, 2);
 $dan = substr($clanak['kreirano'], 8, 2);
@@ -132,7 +140,7 @@ $datum = $dan . '/' . $mjesec . '/' . $godina;
 
             <!--Excerpt-->
             <div class="excerpt mt-5">
-                <p><?php echo $clanak['tekst'] ?>
+                <p><?php echo $tekst ?>
                 </p>
 
             </div>
