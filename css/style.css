@@ -1,0 +1,10 @@
+/* Your custom styles */
+.container{
+	background-color:#ecf0ed;
+}
+section h2{
+	margin:50px 0 50px;
+}
+.glavni{
+	box-shadow: 5px 5px 5px 5px grey;
+}

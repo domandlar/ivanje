@@ -1,0 +1,178 @@
+<?php
+require_once("php/baza.class.php");
+$id = $_GET['clanak'];
+$baza = new Baza();
+$upit = "select sadrzaj.id, naslov, tekst, kreirano, ime, prezime, autor_alias, slika from sadrzaj join administrator on autor = administrator.id where sadrzaj.id = '$id'";
+$baza->spojiDB();
+$rezultat = $baza->selectDB($upit);
+$upit = "select link from slike where clanak = '$id'";
+$slike = $baza->selectDB($upit);
+
+$clanak = mysqli_fetch_assoc($rezultat);
+$baza->zatvoriDB();
+$godina = substr($clanak['kreirano'], 0, 4);
+$mjesec = substr($clanak['kreirano'], 5, 2);
+$dan = substr($clanak['kreirano'], 8, 2);
+$datum = $dan . '/' . $mjesec . '/' . $godina;
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gornja Jelenska</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+ <nav class="navbar navbar-expand-lg navbar-dark teal sticky-top">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="index.html">
+	<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
+	</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Naslovnica
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Vijesti</a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zanimljivosti</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Iz povijesti</a>
+                    <a class="dropdown-item" href="#">Likovnik</a>
+                    <a class="dropdown-item" href="#">Pisma čitatelja</a>
+					<a class="dropdown-item" href="#">Priče iz naših života</a>
+                </div>
+            </li>
+
+			  <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ivanje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Ciljevi</a>
+                    <a class="dropdown-item" href="#">Kontakt</a>
+                </div>
+            </li>
+			
+			   <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Planinarenje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Šetnje</a>
+                    <a class="dropdown-item" href="#">Izleti</a>
+                    <a class="dropdown-item" href="#">Najave</a>
+                </div>
+            </li>
+			
+            
+
+        </ul>
+        <!-- Links -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+    
+<section class="pt-5 mt-4 pb-3 container glavni">
+
+    <!--Grid row-->
+    <div class="row">
+        <div class="col-md-12">
+            <!--Featured image-->
+            <div class="card card-cascade wider reverse">
+                <div class="view text-center ">
+                    <img src="<?php echo $clanak['slika']?>" alt="Wide sample post image" class="img-fluid">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!--Post data-->
+                <div class="card-body text-center">
+                    <h2>
+                        <a class="font-weight-bold"><?php echo $clanak['naslov'] ?></a>
+                    </h2>
+                    <p>Napisao/la
+                        <a><?php echo $clanak['ime'] . ' ' . $clanak['prezime'] ?></a>, <?php echo $datum?></p>
+
+                    
+
+                </div>
+                <!--Post data-->
+            </div>
+
+            <!--Excerpt-->
+            <div class="excerpt mt-5">
+                <p><?php echo $clanak['tekst'] ?>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!--Grid row-->
+
+    
+
+    <hr class="mb-5 mt-4">
+
+</section>
+<!--Section: Blog v.4-->
+   
+ 
+<!--Footer-->
+<footer class="page-footer font-small teal pt-4 mt-4">
+
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        Design: Domagoj Andlar i Lovro Pleše 
+		© 2018 Copyright
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+                      
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+
+</html>

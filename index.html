@@ -1,65 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-
-<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-responsive.min.css">
-<link rel="stylesheet" type="text/css" href="styles.css" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-<title>Udruga Ivanje</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gornja Jelenska</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-<nav id="navigation">
-	<div class="container">
-		<ul class="navlinks">
-		<li><a href="#home">Naslovnica</a></li>
-		<li><a href="#home">Vijesti</a></li>
-		<li><a href="#home">Zanimljivosti</a></li>
-		<li><a href="#home">Ivanje</a></li>
-		<li><a href="#home">Planinarenje</a></li>
-		<li><a href="#home">Kontakt</a></li>
-		</ul>
-	</div>
+
+<body onload="ucitavanje();">
+
+    <!-- Start your project here-->
+    <!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark teal sticky-top">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="index.html">
+	<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
+	</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Naslovnica
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Vijesti</a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zanimljivosti</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Iz povijesti</a>
+                    <a class="dropdown-item" href="#">Likovnik</a>
+                    <a class="dropdown-item" href="#">Pisma čitatelja</a>
+					<a class="dropdown-item" href="#">Priče iz naših života</a>
+                </div>
+            </li>
+
+			  <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ivanje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Ciljevi</a>
+                    <a class="dropdown-item" href="#">Kontakt</a>
+                </div>
+            </li>
+			
+			   <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Planinarenje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Šetnje</a>
+                    <a class="dropdown-item" href="#">Izleti</a>
+                    <a class="dropdown-item" href="#">Najave</a>
+                </div>
+            </li>
+			
+            
+
+        </ul>
+        <!-- Links -->
+
+    </div>
+    <!-- Collapsible content -->
+
 </nav>
- <header id="heading">
-      <div class="container text-center">
-      </div>
-    </header>
-<main class="container">
+<!--/.Navbar-->
 
-	<div class="row">
-	<div class="page-header text-center">
-	<h1>Iz povijesti</h1>
-	</div>
-	</div>
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!--First slide-->
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+        </div>
+        <!--/First slide-->
+        <!--Second slide-->
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+        </div>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+        </div>
+        <!--/Third slide-->
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+    
+<!--Section: Blog v.3-->
+<section id="sekcija" class="py-4 container glavni">
+
+    <!--Section heading-->
+    <h2 class="h1 text-center mb-5">Novosti</h2>
+
+    <!--Grid row-->
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-5 col-xl-4 mb-4">
+            <!--Featured image-->
+            <div class="view overlay rounded z-depth-1-half">
+                <img src="img/susretplaninara.jpg" class="img-fluid" alt="Susret planinara">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+            <h3 class="mb-3 font-weight-bold dark-grey-text">
+                <strong>Susret planinara</strong>
+            </h3>
+            <p class="grey-text text-truncate">Kod Pešuta (Samarica) u organizaciji HPD 'Garjevica' iz Čazme se održalo uobičajeno proljetno druženje. Inače se to tradicionalno organizira na Uskrsni ponedjeljak i ovo pomicanje datuma (vjerojatno zbog ostalih današnjih događanja u Čazmi) se nije pokazalo kao dobar odabir jer je ipak odaziv bio manji od...</p>
+            <p>Napisao/la 
+                <a class="font-weight-bold dark-grey-text"> Željko Tomac</a>, 07/04/2018</p>
+            <a class="btn btn-primary btn-md" href="clanak.html">Opširnije</a>
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
 	
-	<div class="row">
-	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-	<span>Objavljeno Petak, 13 Srpanj 2007 15:00 | Napisao/la Željko Tomac | | Ispis |</span>
-	<h3><a href="#col1Content" data-toggle="collapse">MOSLAVINA (IZ PUTNIH USPOMENA), Dragutin Hirtz (1853-1921), prirodoslovac i publicist</a></h3>
-<div id="col1Content" class="collapse">
-  <p>Ovamo sam se uputio u nedjelju 16. rujna da razgledam grad i tu se svratio g. Ivanu Mučnjaku, upravitelju grada i dobara. Pred gradom sa strane istočne protegnušte se staje, gradjene godine 1754., a kad si unišao u veliko i kamenjem potaracano dvorište, stojiš pred gradskim polokružnim vratima. Grad je građen na jedan sprat u četverokut, te ima prama iztoku u prvom spratu 15 prozora, u prizemno 15, koji su zatvoreni željeznim rešetkama. Sa svake druge strane ima 28 prozora. Desno i lievo u veži jedna je vratarska soba, a kad si unišao u dvorište, zagledaš 24 arkade i veliki iz kamena klesani, a 30 m dubok zdenac. S lieve strane, a preko 27 stuba od hrastovine, dolaziš na hodnik prvoga sprata, što je potaracan valuticama. Tu ima 28 arkada i 24 velike sobe. Na tavanu ima sa svake strane po 2 prozora, dakle 8, a u svakom sastavku krova po jedan buzdovan; dimnjaka ima 12.     Iz velike jedne sobe ulazi se u gradsku kapelicu, odnosno na pjevalište (kor), gdje se čuva stara slika sv. Jurja na platnu, široka 1, a druga 1,28 m i valjda ovamo prenešena iz staroga grada.  Oltar je biel i pozlaćen, a slika Majke Božje nova. Pjevalište je visoko, ali uzko, a klecalo dugo 3 m 6o cm od težke je hrastovine. Soba iz koje ulaziš na pjevalište veoma je prostrana te ima četvora vrata od hrastovine i ogromnu zemljanu peć. Zidovi su u sobama debeli 1 m, a ormar uzidan u prilici vrata, također je od hrastovine. Na podu nađosmo jedan svetilnjak od žute mjedi za 12 svieća. Vrata su duboka 1,04 m, široka 1,12 m, visoka 2,22 m. Hrastovina je nelaštena, petlje (panti) velike i od željeza kovane. U jednoj sobi čuvaju se nekoje starine. Tu je od debele žice pletena obranbena košulja, koju je težko dignuti, a još teže nositi, jedna željezna kaciga sa 6 pera, željezna kapa, koja je štitila tjeme i zatiljak, kožnati tok za buzdovan, tok od sablje, topsko šuplje tane, više slomljenih
-kubura na kremen, noćna svjetiljka, svjetiljka u prilici globusa za dvie svieće. Tu ima i bubanj visok 40, a širok 48 cm sa grbom. Na grbu vidi se s gora kruna, u medaljonu leteći okrunjeni orao, koji gleda u sunce, a nad njime napis: Non solicedit. Izpod orla tlo je zaraslo drvećem, na okolo poredali  se ratni trofeji. Tu se je čuvao i barjak od crvene svile sa crnom slikom Majke Božje, nu poslan na milenijsku izložbu u Budimpeštu, netko je svilu skinuo i golo držalo povratio. Vidio sam u gradu i staru ključanicu sa trostrukim zapiračem, velike i male kubure na kremen i kapicu (kapcel), pušku kremenjaču, umjetno izšaran rog za prah od jelenova roga sa dva parožka, kojega čuva upravitelj grada. U dvorištu
-su četiri zatvora, vrata na njima od hrastovine i gvoždjem okovana, a pod gradom veliki podrumi, bunar i ledvenica.</p>
-  <p>  Iz dvorišta unišli smo u crkvicu i najprije stupili u oblačnicu, gdje se čuva Szveti evangeliumi na vsze nedelye y szvetke czeloga leta za potrebnozt szlavne horvatzke biskupie zagrebechke z dvemi pridavkmi na koncu poztavlyenimi. To je evangjelje štampano godine 1772. u Zagrebu po Ivanu Thomassu Plem. od Trattnerov, Czec. Kralj. Apost. Szvetl. Stamparu. U kapelici je grobnica na koju su slučajno naišli, kad su ju povno taracali i tom prilikom grobnicu otvorili. U kovnom liesu našli su žensko truplo, koprenom oko glave i krunicom u rukama. Na liesu ne ima napisa, a u gradu nije nikomu poznato, tko tu počiva. To je stari grad, a 18. rujna razgledao sam srednji grad, gradjen 1820. u kojem odsjeda vlastnik Arthur grof Berthold, pa smo i tu našli nekoje starine, koje su izkopane u jabukaru iza staroga grada. Tu sam vidio tri kamene kruglje u veličini topovskih taneta, nekoliko komada oštriga,
-željeznih klinova, tjeme jelena, kosti nožne, debele ostanke rogova, criepova, klove od vepra i jedan skršen top.</p>
-  <p>   Dalje ovoga grada ima novi grad u kojemu stanuje šumarsko osoblje. U šumi Ribnjači leže
-zapušteni ribnjaci u kojima živu željve na zator riba i njihova legla, ako ih dakako jošte u vodi ima. Nedaleko ribnjaka ima i strieljana, ima liepa kestenova šuma, a podalje vinograd Mladina u kojem se nazobasmo sladka grožđa.</p>
-     <p>Vlastelinstvo moslavačko zaprema 12.000 jutara zemljišta, 9000 jutara šume, ponajveć bukove i 102 gospodarske sgrade. Gradu Moslavini bijahu gospodari naši slavni Bakači, koji potiču od Petra Bakocza, koji je umro oko godine 1545. i bio brat Tome Bakač Erdoda, koji je poslije primio pridjevak Erdödy i Monyorokekrek i baštinio za života osim drugih imanja i Moslavinu, Jelensku, Dianovac u križevačkoj županiji i Cesar-grad u Zagorju. Car Maksimilijan podieli Bakačima 11. listopada  godine 1565. grofovstvo i to Petru Bakaču, banu hrvatskomu, braći Tomi, Petru, Ani i Margareti. Današnji grofovi Erdödy, nekoć također gospodari Moslavine, potiču od Tome Erdöda, koji je postao grofom 26. veljače 1580. Ova nam je porodica dala više banova kao Petra (1557.-1567.), Tomu 1584.-1595. i opet od 1608. do 1615., Sigmunda (1627.-1639.), Nikolu (1680.-1693.) i Ivana, koji je banovao od godine 1790. do 1806. (I. Bojničić: Der Adel von Croatien und Slavonien, p. 44). Poslije Erdoda imao je grad Moslavina razne gospodare, medju njima i baruna Rothenthala, dok ga ne kupi grof Berthold, koji sada živi u Mletcima.</p>
-   <p> Iza staroga grada leži voćar u kojem ima veliki šljivik, a do njega jabukar u kojem se vide ostanci grada, koje je dao izkopati grof Berthold, da mu odredi temelj. Ima u hrpama složena kamenja i opeka, ima ostanaka od svoda, pa su ovdje i izkopani predmeti, koji se čuvaju u srednjem gradu. Zidovi su na metar i po debeli, a gradjeni od vapnenca, granita i opeka. Na jednome mjestu zagledasmo i zid, što vodi prama obkopima, građen također od opeka. U Moslavini pričaju, da je na ovom sgodnom visu stajao grad rimskoga cara Klaudija i danas ga neki zovu Klaudij. Na razvalinama ovoga grada stajao je poslije drugi grad, jer oni izkopani predmeti ne potiču iz rimske dobe. Gledajući odavle prama današnjemu staromu gradu, vidimo duboke obkope, zarasle neprehodnim guštikom,  a vide se i ostanci kula, škulje za topove, pa bijaše s ove strane možda i most lančevnik.</p>
-    <p> Mladikom vodi ugodan put iz grada u blizu Popovaču, koja se otegnula uz državni drum, a
-znamenita je svojim vašarima, koji se obdržavaju na dan sv. Vjekoslava i na Bartolovo. Tom prilikom dođe na vašar do 4000 glava rogatoga blaga, ponajveć mölthalske pasmine za kojim se jagme trgovci iz Beča, Trsta drugih krajeva.</p>
-   <p>  Kod Slatine ima Jezero, u kojem je voda do 2 m duboka u kojoj živi od zanimiva povodnog bilja orešac.</p>
-	</div>
-	</div>
-	</div>
-</main>
+	<!--Grid row-->
+    <div class="row">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+        <!--Grid column-->
+        <div class="col-lg-5 col-xl-4 mb-4">
+            <!--Featured image-->
+            <div class="view overlay rounded z-depth-1-half">
+                <img src="img/majka.jpg" class="img-fluid" alt="Stara majka">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+            <h3 class="mb-3 font-weight-bold dark-grey-text">
+                <strong>Prozor stare majke</strong>
+            </h3>
+            <p class="grey-text">'To je prozor moje stare majke
+
+Navikla je da me čeka
+
+Kad se kući vraćam iz daleka'
+
+Koliko puta smo ovo slušali na feštama?!
+
+A stara majka je eto dogurala do punih devedeset godina i želimo joj od sveg srca da još puno godina bude putokaz na tom prozoru!</p>
+            <p>Napisao/la 
+                <a class="font-weight-bold dark-grey-text"> Željko Tomac</a>, 07/04/2018</p>
+            <a class="btn btn-primary btn-md">Opširnije</a>
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+
+</section>
+<!--Section: Blog v.3-->
+   
+ 
+<!--Footer-->
+<footer class="page-footer font-small teal pt-4 mt-4">
+
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        Design: Domagoj Andlar i Lovro Pleše 
+		© 2018 Copyright
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+                      
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script type="text/javascript" src="skripta.js"></script>
 </body>
+
 </html>
