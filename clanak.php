@@ -6,7 +6,7 @@ $upit = "select sadrzaj.id, naslov, tekst, kreirano, ime, prezime, autor_alias, 
 $baza->spojiDB();
 $rezultat = $baza->selectDB($upit);
 $upit = "select link from slike where clanak = '$id'";
-$slike = $baza->selectDB($upit);
+$slikeRezultat = $baza->selectDB($upit);
 $clanak = mysqli_fetch_assoc($rezultat);
 $tekst = $clanak['tekst'];
 $baza->zatvoriDB();
@@ -22,6 +22,9 @@ $godina = substr($clanak['kreirano'], 0, 4);
 $mjesec = substr($clanak['kreirano'], 5, 2);
 $dan = substr($clanak['kreirano'], 8, 2);
 $datum = $dan . '/' . $mjesec . '/' . $godina;
+$slike = array();
+while($slika = mysqli_fetch_assoc($slikeRezultat))
+    $slike[] = $slika;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +42,9 @@ $datum = $dan . '/' . $mjesec . '/' . $godina;
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="css/lightbox.min.css">
+
 </head>
 
 <body>
@@ -151,7 +157,11 @@ $datum = $dan . '/' . $mjesec . '/' . $godina;
     
 
     <hr class="mb-5 mt-4">
-
+    <?php
+    foreach($slike as $slika){
+        echo "<a href='" . $slika["link"] . "' data-lightbox='galerija'><img src='" . $slika["link"] . "' height='' width='200'></a>";
+    }
+    ?>
 </section>
 <!--Section: Blog v.4-->
    
@@ -181,6 +191,8 @@ $datum = $dan . '/' . $mjesec . '/' . $godina;
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Lightbox-->
+    <script type="text/javascript" src="js/lightbox-plus-jquery.min.js"></script>
 </body>
 
 </html>

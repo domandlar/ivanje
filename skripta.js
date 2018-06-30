@@ -1,22 +1,25 @@
+$(document).ready(function(){
+    ucitavanje();
+});
 function ucitavanje() {
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonLista = JSON.parse(this.responseText);
-            for (i in jsonLista) {
-                var konjtenjer = document.getElementById("sekcija");
-                konjtenjer.innerHTML += kreirajElement(jsonLista[i].id, jsonLista[i].kreirano, jsonLista[i].autor_alias, jsonLista[i].ime, jsonLista[i].prezime, jsonLista[i].slika, jsonLista[i].naslov, jsonLista[i].tekst);
-            }
+    $.ajax({
+        type:"get",
+        dataType:"json",
+        url:"php/index.php",
+        success:function(clanci){
+            $.each(clanci, function(i, clanak){
+                $("section").append(kreirajElement(clanak.id, clanak.kreirano, clanak.autor_alias, clanak.ime, clanak.prezime, clanak.slika, clanak.naslov, clanak.tekst));
+            })
         }
-    };
-    xmlhttp.open("GET", "php/index.php", true);
-    xmlhttp.send();
+    })
 }
 
 
 window.onscroll = function (ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        ucitavanje();
+        this.setTimeout(
+            ucitavanje()
+        , 5000);
     }
 };
 
