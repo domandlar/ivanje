@@ -54,3 +54,7 @@ function kreirajElement(id, vrijeme, autor, ime, prezime, slika, naslov, tekst) 
 
     return element;
 }
+	// Material Select Initialization
+$(document).ready(function() {
+   $('.mdb-select').material_select();
+ });
