@@ -10,9 +10,13 @@ section h2{
 .lightboxSlike img{
 	margin:10px;
 	text-align:center;
+	border-radius:10px;
+}
+.lightboxSlike a{
+	
 }
 .lightboxSlike{
-	margin:20px;
+	margin:auto;
 }
 .login{
 	width:700px;
