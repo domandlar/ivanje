@@ -1,10 +1,41 @@
 /* Your custom styles */
-.container{
-	background-color:#ecf0ed;
-}
+
 section h2{
 	margin:50px 0 50px;
 }
 .glavni{
+	background-color:#ecf0ed;
 	box-shadow: 5px 5px 5px 5px grey;
 }
+.lightboxSlike img{
+	margin:10px;
+	text-align:center;
+}
+.lightboxSlike{
+	margin:20px;
+}
+.login{
+	width:700px;
+	height:auto;
+}
+.login h1{
+	text-align:center;
+	padding:30px 0 30px;
+	margin:30px 0 30px;
+}
+.login button{
+	margin:10px 0 30px;
+}
+.box{
+	border-radius: 15px;
+	padding:30px;
+	cursor:pointer;
+}
+.main-admin{
+	margin-top:50px;
+}
+.maska{
+	border-radius:15px;
+	cursor:pointer;
+}
+
