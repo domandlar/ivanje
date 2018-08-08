@@ -1,17 +1,24 @@
+var br = 0;
 $(document).ready(function(){
     ucitavanje();
+    //$('.mdb-select').material_select();
 });
 function ucitavanje() {
     $.ajax({
         type:"get",
         dataType:"json",
-        url:"php/index.php",
+        url:"php/index.php?br=" + br,
         success:function(clanci){
             $.each(clanci, function(i, clanak){
-                $("section").append(kreirajElement(clanak.id, clanak.kreirano, clanak.autor_alias, clanak.ime, clanak.prezime, clanak.slika, clanak.naslov, clanak.tekst));
+                tekst = clanak.tekst;
+                tekst = clanak.tekst.replace(/<img[^>]*>/g,"");
+                tekst = tekst.replace(/<div[^>]*>[A-ZČĆĐŠŽa-zčćđšž\s]*/g,"")
+                tekst = $("<p>"+tekst+"</p>").text();
+                $("section").append(kreirajElement(clanak.id, clanak.kreirano, clanak.autor, clanak.autor_alias, clanak.ime, clanak.prezime, clanak.slika, clanak.naslov, tekst));
             })
         }
     })
+    br++;
 }
 
 
@@ -24,9 +31,11 @@ window.onscroll = function (ev) {
 };
 
 
-function kreirajElement(id, vrijeme, autor, ime, prezime, slika, naslov, tekst) {
-    if (autor == null)
-        autor = ime + ' ' + prezime
+function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, tekst) {
+    autor = (alias == null || alias == '')? ime + ' ' + prezime : alias;
+    if (!tekst.replace(/\s/g, '').length) {
+        tekst = 'Fotogalerija';
+    }
     godina = vrijeme.substring(0, 4);
     mjesec = vrijeme.substring(5, 7);
     dan = vrijeme.substring(8, 10);
@@ -54,7 +63,8 @@ function kreirajElement(id, vrijeme, autor, ime, prezime, slika, naslov, tekst) 
 
     return element;
 }
-	// Material Select Initialization
+    // Material Select Initialization/
+    /*
 $(document).ready(function() {
    $('.mdb-select').material_select();
- });
+ });*/
