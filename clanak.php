@@ -123,7 +123,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
         <div class="col-md-12">
             <!--Featured image-->
             <div class="card card-cascade wider reverse">
-                <div class="view text-center ">
+                <div class="view text-center clanakslika">
                     <img src="<?php echo $clanak['slika']?>" alt="Wide sample post image" class="img-fluid">
                     <a>
                         <div class="mask rgba-white-slight"></div>
@@ -155,13 +155,14 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
     <!--Grid row-->
 
     
-
     <hr class="mb-5 mt-4">
+	<div class="row lightboxSlike img-fluid mx-auto d-block">
     <?php
     foreach($slike as $slika){
         echo "<a href='" . $slika["link"] . "' data-lightbox='galerija'><img src='" . $slika["link"] . "' height='' width='200'></a>";
     }
     ?>
+	</div>
 </section>
 <!--Section: Blog v.4-->
    
