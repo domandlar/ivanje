@@ -1,5 +1,5 @@
 <?php
-require '../php/autorizacija.php';
+require '../php/baza.class.php';
 
 if(!isset($_COOKIE['SESIJA'])){
     header('Location: login.php');
@@ -87,7 +87,7 @@ include './header.php';
 ?>
 	<main class="container">
     <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-5">Dodaj novi članak</h2>
+    <h2 class="h1-responsive  text-center my-5">Dodaj novi članak</h2>
 
     <div class="row">
 
@@ -127,15 +127,14 @@ include './header.php';
 				<div class="row">
 				
                     <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <select name="kategorija" class="mdb-select">
-								<option value="" disabled selected>Kategorija</option>
-								<option value="1">Vijesti</option>
-								<option value="2">Zanimljivosti</option>
-								<option value="3">Ivanje</option>
-								<option value="4">Planinarenje</option>
-							</select>
+                    <div class="col-md-6" id="odabir">
+                        <div class="md-form mb-0 ">
+                            <select id="soflow">
+                            <option>Kategorija</option>
+                            <option>Selo moje malo</option>
+                            <option>Planinarenje</option>
+                            <option>Zanimljivosti</option>
+                            </select>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -185,7 +184,7 @@ include './header.php';
                 </div>
                 
                 <div class="text-center text-md-left">
-                <button name="submit" type="submit" value="Submit" class="btn btn-primary">Objavi</button>
+                <button name="submit" type="submit" value="Submit" class="btn btn-primary ">Objavi</button>
                 </div>
 
             </form>
