@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gornja Jelenska</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+    <!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark teal sticky-top">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="../index.html">
+	<img border="0" alt="Ivanje Logo" src="../img/logo2.png" width="60px" height="auto">
+	</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="../index.html">Naslovnica
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zanimljivosti</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Iz povijesti</a>
+                    <a class="dropdown-item" href="#">Likovnik</a>
+                    <a class="dropdown-item" href="#">Pisma čitatelja</a>
+					<a class="dropdown-item" href="#">Priče iz naših života</a>
+                </div>
+            </li>
+
+			  <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ivanje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Ciljevi</a>
+                    <a class="dropdown-item" href="ivanje/kontakt.html">Kontakt</a>
+                </div>
+            </li>
+			
+			   <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Planinarenje</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Šetnje</a>
+                    <a class="dropdown-item" href="#">Izleti</a>
+                    <a class="dropdown-item" href="#">Najave</a>
+                </div>
+            </li>
+			
+            
+
+        </ul>
+        <!-- Links -->
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+<!--Section: Contact v.2-->
+<section class="section container">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Kontaktirajte nas</h2>
+
+	<div class="row">
+		   <!--Grid column-->
+        <div class="col-md-12 text-center">
+            <ul class="list-unstyled mb-0">
+                <li><i class="fa fa-envelope mt-4 fa-2x"></i>
+                    <p>info@ivanje.hr</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+	</div>
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="ime" name="ime" class="form-control">
+                            <label for="ime" class="">Ime</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email" class="">Email</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="predmet" name="predmet" class="form-control">
+                            <label for="predmet" class="">Predmet</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message">Poruka</label>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Pošalji</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+   
+ 
+<!--Footer-->
+<footer class="page-footer font-small teal pt-4 mt-4">
+
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+        Design: Domagoj Andlar i Lovro Pleše 
+		© 2018 Copyright
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+                      
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+
+    <script type="text/javascript" src="../skripta.js"></script>
+</body>
+
+</html>
