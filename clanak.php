@@ -31,7 +31,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Gornja Jelenska</title>
     <!-- Font Awesome -->
@@ -114,42 +114,34 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
 
     
 <section class="pt-5 mt-4 pb-3 container glavni">
-
     <!--Grid row-->
     <div class="row">
-        <div class="col-md-12">
-            <!--Featured image-->
-            <div class="card card-cascade wider reverse">
-                <div class="view text-center clanakslika">
+        <div class="col-xl-12 text-center">
+            <h2 class="h1-responsive">
+                <a><?php echo $clanak['naslov'] ?></a>
+            </h2>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="view text-center clanakSlika mb-5">
                     <img src="<?php echo $clanak['slika']?>" alt="Wide sample post image" class="img-fluid">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
-                </div>
-
-                <!--Post data-->
-                <div class="card-body text-center">
-                    <h2>
-                        <a class="font-weight-bold"><?php echo $clanak['naslov'] ?></a>
-                    </h2>
-                    <p>Napisao/la
-                        <a><?php echo $clanak['ime'] . ' ' . $clanak['prezime'] ?></a>, <?php echo $datum?></p>
-
-                    
-
-                </div>
-                <!--Post data-->
-            </div>
-
-            <!--Excerpt-->
-            <div class="excerpt mt-5">
-                <p><?php echo $tekst ?>
-                </p>
-
             </div>
         </div>
     </div>
-    <!--Grid row-->
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-3 col-sm-12 mb-3">
+            <p>Napisao/la <a class="font-weight-bold"><?php echo $clanak['ime'] . ' ' . $clanak['prezime'] ?></a>, <?php echo $datum?></p>
+        </div>
+
+        <div class="col-xl-9 col-md-9 col-sm-12">
+        <p><?php echo $tekst ?></p>
+        </div>
+    </div>
 
     
     <hr class="mb-5 mt-4">
