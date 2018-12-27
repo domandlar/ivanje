@@ -1,139 +1,138 @@
 <?php
 require '../php/baza.class.php';
 
-if(!isset($_COOKIE['SESIJA'])){
+if (!isset($_COOKIE['SESIJA'])) {
     header('Location: login.php');
 }
-
-if(isset($_POST['submit']) && isset($_POST['kategorija'])){
-    $naziv = $_POST['name'];
-    $alias = $_POST['alias'];
-    $kategorija = $_POST['kategorija'];
-    $clanak = $_POST['clanak'];
+if ($_GET['mod'] == 'azuriranje') {
+    $id = $_GET['id'];
     $db = new Baza();
-    $autor = $_COOKIE['SESIJA'];
-    $kreirano = date('Y:m:d H:i:s');
     $db->spojiDB();
-    $upit = "select id from administrator where korisnicko_ime = '$autor'";
-    $rezultat = $db->selectDB($upit);
-    $autor = mysqli_fetch_assoc($rezultat);
-    $autor = $autor['id'];
-    $naslovnaSlika = null;
-    if(isset($_FILES['naslovnaSlika'])){
-        $slika = array();
-        $slika['name'] = $_FILES['naslovnaSlika']['name'];
-        $slika['tmp_name'] = $_FILES['naslovnaSlika']['tmp_name'];
-        $slika['size'] = $_FILES['naslovnaSlika']['size'];
-        spremiSliku($slika);
-        $naslovnaSlika = "slike/" . $slika['name'];
-    }
-    
-    $upit = "insert into sadrzaj (naslov, tekst, slika, kategorija, kreirano, autor, autor_alias) values
-    ('$naziv', '$clanak', '$naslovnaSlika', '$kategorija', '$kreirano', '$autor', '$alias')";
-    $db->selectDB($upit);
-    $upit = "select id from sadrzaj order by 1 desc limit 1";
+    $upit = "select sadrzaj.id, naslov, alias, kategorija.naziv kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from sadrzaj
+    join administrator on administrator.id = sadrzaj.autor join kategorija on kategorija.id = sadrzaj.kategorija where sadrzaj.id='$id'";
+    $upit = "select * from sadrzaj where id='$id'";
     $rezultat = $db->selectDB($upit);
     $clanak = mysqli_fetch_assoc($rezultat);
-    $clanakID = $clanak['id'];
-
-    if(isset($_FILES['slike'])){
-        for($i = 0; $i < sizeof($_FILES['slike']['name']); $i++){
-            $slika = array();
-            $slika['name'] = $_FILES['slike']['name'][$i];
-            $slika['tmp_name'] = $_FILES['slike']['tmp_name'][$i];
-            $slika['size'] = $_FILES['slike']['size'][$i];
-            spremiSliku($slika);
-            $link = "slike/" . basename($slika["name"]);
-            $upit = "insert into slike (clanak, link) values ('$clanakID', '$link')";
-            $db->selectDB($upit);
-        }
-
-    }
-    
     $db->zatvoriDB();
 }
-function spremiSliku($slika){//name, tmp_name, size
-    $target_dir = "../slike/";
-    $target_file = $target_dir . basename($slika["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    //Provjera je li datoteka slika
-    /*$check = getimagesize($slika["tmp_name"]);
-    if($check !== false) {
-        echo "Datoteka je slika - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "Datoteka nije slika.";
-        $uploadOk = 0;
-    }*/
-    //Provjera veličine slike
-    /*if ($slika["size"] > 500000) {
-        echo "Slika je prevelika.";
-        $uploadOk = 0;
-    }*/
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($slika["tmp_name"], $target_file)) {
-            //echo "The file ". basename( $slika["name"]). " has been uploaded.";
-        } else {
-            //echo "Sorry, there was an error uploading your file.";
-        }
-    }
-}
+
 include './header.php';
 ?>
 	<main class="container">
     <!--Section heading-->
-    <h2 class="h1-responsive  text-center my-5">Dodaj novi članak</h2>
+    <h2 class="h1-responsive  text-center my-5"><?php if ($_GET['mod'] == 'novi') {
+    echo "Dodaj novi članak";
+} else {
+    echo "Ažuriraj članak";
+}
+?></h2>
 
     <div class="row">
 
         <!--Grid column-->
         <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="novi.php" method="POST" enctype="multipart/form-data">
-
+            <form id="contact-form" name="contact-form" action=<?php if ($_GET['mod'] == 'azuriranje') {
+    echo "clanciApi.php?akcija=azuriraj";
+} else {
+    echo "clanciApi.php?akcija=novi";
+}
+?> method="POST" enctype="multipart/form-data">
+                <?php if ($_GET['mod'] == 'azuriranje') {
+    echo "<input type='text' name='id' value='$id' style='visibility:hidden'>";
+}
+?>
                 <!--Grid row-->
                 <div class="row">
 
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control">
+                            <input type="text" id="name" name="name" class="form-control" <?php if ($_GET['mod'] == 'azuriranje') {
+    echo "value='" . $clanak['naslov'] . "'";
+}
+?>>
                             <label for="name" class="">Naziv</label>
                         </div>
                     </div>
                     <!--Grid column-->
 
                 </div>
-				
+
                 <!--Grid row-->
 				<div class="row">
-				
+
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="alias" name="alias" class="form-control">
+                            <input type="text" id="alias" name="alias" class="form-control" <?php if ($_GET['mod'] == 'azuriranje') {
+    echo "value='" . $clanak['autor_alias'] . "'";
+}
+?>>
                             <label for="email" class="">Alias</label>
                         </div>
                     </div>
                     <!--Grid column-->
 				</div>
 				<!--Grid row-->
-				
+
 				<!--Grid row-->
 				<div class="row">
-				
+
                     <!--Grid column-->
                     <div class="col-md-6" id="odabir">
                         <div class="md-form mb-0 ">
-                            <select id="soflow">
-                            <option>Kategorija</option>
-                            <option>Selo moje malo</option>
-                            <option>Planinarenje</option>
-                            <option>Zanimljivosti</option>
+                            <select name="kategorija" id="soflow">
+                            <option value="" hidden>Kategorija</option>
+                            <option value="1" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 1) {
+    echo "selected";
+}
+?>>Vijesti</option>
+                            <optgroup label="Zanimljivosti">
+                            <option value="2" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 2) {
+    echo "selected";
+}
+?>>Iz povijesti</option>
+                            <option value="3" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 3) {
+    echo "selected";
+}
+?>>Selo moje malo</option>
+                            <option value="4" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 4) {
+    echo "selected";
+}
+?>>Likovnik</option>
+                            <option value="5" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 5) {
+    echo "selected";
+}
+?>>Pisma čitatelja</option>
+                            <option value="6" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 6) {
+    echo "selected";
+}
+?>>Priče iz naših života</option>
+                            </optgroup>
+                            <optgroup label="Ivanje">
+                            <option value="7" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 7) {
+    echo "selected";
+}
+?>>Ciljevi</option>
+                            <option value="8" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 8) {
+    echo "selected";
+}
+?>>Kontakt</option>
+                            </optgroup>
+                            <optgroup label="Planinarenje">
+                            <option value="9" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 9) {
+    echo "selected";
+}
+?>>Šetnje</option>
+                            <option value="10" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 10) {
+    echo "selected";
+}
+?>>Izleti</option>
+                            <option value="11" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 11) {
+    echo "selected";
+}
+?>>Najave</option>
+                            </optgroup>
                             </select>
                         </div>
                     </div>
@@ -150,7 +149,10 @@ include './header.php';
 
                         <div class="form-group mb-5">
 							<label for="exampleFormControlTextarea1" class="">Napiši članak</label>
-							<textarea name="clanak" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
+							<textarea name="clanak" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" ><?php if ($_GET['mod'] == 'azuriranje') {
+    echo $clanak['tekst'];
+}
+?></textarea>
 						</div>
 
                     </div>
@@ -182,14 +184,14 @@ include './header.php';
 
                     </div>
                 </div>
-                
+
                 <div class="text-center text-md-left">
                 <button name="submit" type="submit" value="Submit" class="btn btn-primary ">Objavi</button>
                 </div>
 
             </form>
 
-            
+
             <div class="status"></div>
         </div>
         <!--Grid column-->
@@ -198,4 +200,9 @@ include './header.php';
     </div>
 <!--Section: Contact v.2-->
 	</main>
+
+<?php include './skripte.php';?>
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+<!--script type="text/javascript" src="./novi.js"></script-->
 <?php include './footer.php';

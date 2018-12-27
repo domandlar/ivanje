@@ -2,13 +2,16 @@
 require_once("php/baza.class.php");
 $id = $_GET['clanak'];
 $baza = new Baza();
-$upit = "select sadrzaj.id, naslov, tekst, kreirano, ime, prezime, autor_alias, slika from sadrzaj join administrator on autor = administrator.id where sadrzaj.id = '$id'";
+$upit = "select sadrzaj.id, naslov, tekst, kreirano, ime, prezime, autor_alias, slika, broj_pregleda from sadrzaj join administrator on autor = administrator.id where sadrzaj.id = '$id'";
 $baza->spojiDB();
 $rezultat = $baza->selectDB($upit);
 $upit = "select link from slike where clanak = '$id'";
 $slikeRezultat = $baza->selectDB($upit);
 $clanak = mysqli_fetch_assoc($rezultat);
 $tekst = $clanak['tekst'];
+$brojPregleda = $clanak['broj_pregleda'] + 1;
+$upit = "update sadrzaj set broj_pregleda='$brojPregleda' where id='$id'";
+$baza->selectDB($upit);
 $baza->zatvoriDB();
 
 for($i=0; $i < strlen($tekst); $i++){

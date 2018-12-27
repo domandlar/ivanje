@@ -23,7 +23,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark teal sticky-top">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
 	<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
 	</a>
 
@@ -39,38 +39,38 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">Naslovnica
+                <a class="nav-link" href="index.php">Naslovnica
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Vijesti</a>
+                <a class="nav-link" href="index.php">Vijesti</a>
             </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zanimljivosti</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Iz povijesti</a>
-                    <a class="dropdown-item" href="#">Likovnik</a>
-                    <a class="dropdown-item" href="#">Pisma čitatelja</a>
-					<a class="dropdown-item" href="#">Priče iz naših života</a>
+                    <a class="dropdown-item" href="izPovijesti.php">Iz povijesti</a>
+                    <a class="dropdown-item" href="likovnik.php">Likovnik</a>
+                    <a class="dropdown-item" href="pismaCitatelja.php">Pisma čitatelja</a>
+					<a class="dropdown-item" href="priceIzNasihZivota.php">Priče iz naših života</a>
                 </div>
             </li>
 
 			  <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ivanje</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Ciljevi</a>
-                    <a class="dropdown-item" href="#">Kontakt</a>
+                    <a class="dropdown-item" href="ciljevi.php">Ciljevi</a>
+                    <a class="dropdown-item" href="kontakt.php">Kontakt</a>
                 </div>
             </li>
 			
 			   <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Planinarenje</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Šetnje</a>
-                    <a class="dropdown-item" href="#">Izleti</a>
-                    <a class="dropdown-item" href="#">Najave</a>
+                    <a class="dropdown-item" href="setnje.php">Šetnje</a>
+                    <a class="dropdown-item" href="izleti.php">Izleti</a>
+                    <a class="dropdown-item" href="najave.php">Najave</a>
                 </div>
             </li>
 			
@@ -126,86 +126,18 @@
     <!--/.Controls-->
 </div>
 <!--/.Carousel Wrapper-->
-    
 <!--Section: Blog v.3-->
 <section class="py-4 container glavni">
 
     <!--Section heading-->
     <h2 class="h1 text-center mb-5">Novosti</h2>
 
-    <!--Grid row-->
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="col-lg-5 col-xl-4 mb-4">
-            <!--Featured image-->
-            <div class="view overlay rounded z-depth-1-half">
-                <img src="img/susretplaninara.jpg" class="img-fluid" alt="Susret planinara">
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
-            <h3 class="mb-3 font-weight-bold dark-grey-text">
-                <strong>Susret planinara</strong>
-            </h3>
-            <p class="grey-text text-truncate">Kod Pešuta (Samarica) u organizaciji HPD 'Garjevica' iz Čazme se održalo uobičajeno proljetno druženje. Inače se to tradicionalno organizira na Uskrsni ponedjeljak i ovo pomicanje datuma (vjerojatno zbog ostalih današnjih događanja u Čazmi) se nije pokazalo kao dobar odabir jer je ipak odaziv bio manji od...</p>
-            <p>Napisao/la 
-                <a class="font-weight-bold dark-grey-text"> Željko Tomac</a>, 07/04/2018</p>
-            <a class="btn btn-primary btn-md" href="clanak.html">Opširnije</a>
-        </div>
-        <!--Grid column-->
-
-    </div>
-    <!--Grid row-->
-	
-	<!--Grid row-->
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="col-lg-5 col-xl-4 mb-4">
-            <!--Featured image-->
-            <div class="view overlay rounded z-depth-1-half">
-                <img src="img/majka.jpg" class="img-fluid" alt="Stara majka">
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
-            <h3 class="mb-3 font-weight-bold dark-grey-text">
-                <strong>Prozor stare majke</strong>
-            </h3>
-            <p class="grey-text">'To je prozor moje stare majke
-
-Navikla je da me čeka
-
-Kad se kući vraćam iz daleka'
-
-Koliko puta smo ovo slušali na feštama?!
-
-A stara majka je eto dogurala do punih devedeset godina i želimo joj od sveg srca da još puno godina bude putokaz na tom prozoru!</p>
-            <p>Napisao/la 
-                <a class="font-weight-bold dark-grey-text"> Željko Tomac</a>, 07/04/2018</p>
-            <a class="btn btn-primary btn-md">Opširnije</a>
-        </div>
-        <!--Grid column-->
-
-    </div>
-    <!--Grid row-->
+    
 
 
 </section>
 <!--Section: Blog v.3-->
    
- 
 <!--Footer-->
 <footer class="page-footer font-small teal pt-4 mt-4">
 
@@ -232,7 +164,8 @@ A stara majka je eto dogurala do punih devedeset godina i želimo joj od sveg sr
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
-    <script type="text/javascript" src="skripta.js"></script>
+    <script type="text/javascript" src="javascript/skripta.js"></script>
+    <script type="text/javascript" src="javascript/vijesti.js"></script>
 </body>
 
 </html>

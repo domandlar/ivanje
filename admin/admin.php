@@ -15,7 +15,7 @@ include './header.php';
 					<br>
 					<span>Dodaj novi članak</span>
 					</div>
-					<a href="novi.php">
+					<a href="novi.php?mod=novi">
 						<div class="mask flex-center rgba-black-light maska">
 						</div>
 					</a>
@@ -29,8 +29,10 @@ include './header.php';
 					<br>
 					<span>Upravljanje članicima</span>
 					</div>
+					<a href="uprCla.php">
 					<div class="mask flex-center rgba-black-light maska">
 					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-3">
@@ -51,11 +53,14 @@ include './header.php';
 					<br>
 					<span>Upravljanje korisnicima</span>
 					</div>
+					<a href="uprKor.php">
 					<div class="mask flex-center rgba-black-light maska">
 					</div>
+					</a>
 				</div>
 			</div>
 				
 		</div>
 	</main>
-<?php include './footer.php';
+<?php include './skripte.php';
+include 'footer.php';

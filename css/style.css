@@ -105,3 +105,37 @@ select#soflow{
 .adminIkone button{
 	border-radius: 40px;
 }
+/*Tablica*/
+#tab-nav{
+	font-size: 16px;
+	height: 30px;
+	margin-top: 10px;
+	list-style: none;
+}
+#tab-nav ul{
+	list-style: none;
+	height: inherit;
+}
+#tab-nav ul li{
+	background-color: rgba(218, 210, 210, 0.719);
+	font-size: 18px;
+	width: 30px;
+	height: inherit;
+	border-radius: 3px;
+	border: 0.5px black solid;
+	float: left;
+	text-align: center;
+}
+#tab-nav ul li a{
+	margin-top: 5px;
+}
+#tab-nav ul .aktivno{
+	background-color: rgb(0, 102, 255);
+}
+th{
+	cursor: pointer;
+}
+/*Slike u starim člancima*/
+td img{
+	
+}

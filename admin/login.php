@@ -5,7 +5,7 @@ if($_SERVER["HTTPS"] != "on")
     header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
     exit();
 }*/
-require_once '../php/autorizacija.php';
+require_once '../php/baza.class.php';
 if(isset($_COOKIE['SESIJA'])){
     header('Location: admin.php');
 }

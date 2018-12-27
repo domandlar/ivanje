@@ -1,13 +1,15 @@
 var br = 0;
-$(document).ready(function(){
+var stranica;
+function novaStranica(stranica){
+    br = 0;
+    this.stranica = stranica;
     ucitavanje();
-    //$('.mdb-select').material_select();
-});
+}
 function ucitavanje() {
     $.ajax({
         type:"get",
         dataType:"json",
-        url:"php/index.php?br=" + br,
+        url:"php/index.php?br=" + br + "&stranica=" + stranica,
         success:function(clanci){
             $.each(clanci, function(i, clanak){
                 tekst = clanak.tekst;
@@ -21,14 +23,14 @@ function ucitavanje() {
     br++;
 }
 
-
 window.onscroll = function (ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         this.setTimeout(
-            ucitavanje()
+        ucitavanje()
         , 5000);
     }
 };
+
 
 
 function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, tekst) {
@@ -63,8 +65,3 @@ function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, 
 
     return element;
 }
-    // Material Select Initialization/
-    /*
-$(document).ready(function() {
-   $('.mdb-select').material_select();
- });*/
