@@ -28,6 +28,24 @@ if(preg_match('/{gallery/',$uvodniTekst)){
     $uvodniTekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $uvodniTekst);
 }
 $tekst = $clanak['tekst'];
+if(preg_match('/{gallery/',$tekst)){
+    $pocetakGalerije = strpos($tekst, "{gallery");
+    $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+    $duljinaPutanjeGalerije = strpos($tekst, "}")-strpos($tekst, "{gallery")-16;
+    $putanjaGalerije = substr($tekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+    $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+    $datoteke = scandir($punaPutanjaGalerije);
+    unset($datoteke[0]);
+    unset($datoteke[1]);
+    $datoteke = array_values($datoteke);
+    $galerija = "";
+    foreach($datoteke as $datoteka){
+        if(!preg_match('/.html/',$datoteka)){
+                $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
+        }
+    }
+    $tekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $tekst);
+}
 $brojPregleda = $clanak['broj_pregleda'] + 1;
 $upit = "update clanak set broj_pregleda='$brojPregleda' where id='$id'";
 $baza->selectDB($upit);
