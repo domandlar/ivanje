@@ -2,12 +2,31 @@
 require_once("php/baza.class.php");
 $id = $_GET['clanak'];
 $baza = new Baza();
-$upit = "select clanak.id, naslov, tekst, kreirano, ime, prezime, autor_alias, naslovna_slika, slike, broj_pregleda from clanak join administrator on autor = administrator.id where clanak.id = '$id'";
+$upit = "select clanak.id, naslov, uvodni_tekst, tekst, kreirano, ime, prezime, autor_alias, naslovna_slika, slike, broj_pregleda from clanak join administrator on autor = administrator.id where clanak.id = '$id'";
 $baza->spojiDB();
 $rezultat = $baza->selectDB($upit);
 $upit = "select link from slike where clanak = '$id'";
 $slikeRezultat = $baza->selectDB($upit);
 $clanak = mysqli_fetch_assoc($rezultat);
+$uvodniTekst = $clanak['uvodni_tekst'];
+if(preg_match('/{gallery/',$uvodniTekst)){
+    $pocetakGalerije = strpos($uvodniTekst, "{gallery");
+    $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+    $duljinaPutanjeGalerije = strpos($uvodniTekst, "}")-strpos($uvodniTekst, "{gallery")-16;
+    $putanjaGalerije = substr($uvodniTekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+    $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+    $datoteke = scandir($punaPutanjaGalerije);
+    unset($datoteke[0]);
+    unset($datoteke[1]);
+    $datoteke = array_values($datoteke);
+    $galerija = "";
+    foreach($datoteke as $datoteka){
+        if(!preg_match('/.html/',$datoteka)){
+                $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
+        }
+    }
+    $uvodniTekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $uvodniTekst);
+}
 $tekst = $clanak['tekst'];
 $brojPregleda = $clanak['broj_pregleda'] + 1;
 $upit = "update clanak set broj_pregleda='$brojPregleda' where id='$id'";
@@ -145,7 +164,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
         </div>
 
         <div class="col-xl-9 col-md-9 col-sm-12">
-        <p><?php echo $tekst ?></p>
+        <p><?php echo $uvodniTekst . '<br>' . $tekst ?></p>
         </div>
     </div>
 
@@ -156,6 +175,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
     foreach($slike as $slika){
         echo "<a href='" . $slika["link"] . "' data-lightbox='galerija'><img src='" . $slika["link"] . "' height='' width='200'></a>";
     }
+    echo $clanak['slike'];
     ?>
 	</div>
 </section>
