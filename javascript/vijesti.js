@@ -1,3 +1,3 @@
 $(document).ready(function(){
-    novaStranica("vijesti");
+    novaStranica("Vijesti");
 })

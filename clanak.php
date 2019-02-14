@@ -2,7 +2,7 @@
 require_once("php/baza.class.php");
 $id = $_GET['clanak'];
 $baza = new Baza();
-$upit = "select sadrzaj.id, naslov, tekst, kreirano, ime, prezime, autor_alias, slika, broj_pregleda from sadrzaj join administrator on autor = administrator.id where sadrzaj.id = '$id'";
+$upit = "select clanak.id, naslov, tekst, kreirano, ime, prezime, autor_alias, naslovna_slika, slike, broj_pregleda from clanak join administrator on autor = administrator.id where clanak.id = '$id'";
 $baza->spojiDB();
 $rezultat = $baza->selectDB($upit);
 $upit = "select link from slike where clanak = '$id'";
@@ -10,7 +10,7 @@ $slikeRezultat = $baza->selectDB($upit);
 $clanak = mysqli_fetch_assoc($rezultat);
 $tekst = $clanak['tekst'];
 $brojPregleda = $clanak['broj_pregleda'] + 1;
-$upit = "update sadrzaj set broj_pregleda='$brojPregleda' where id='$id'";
+$upit = "update clanak set broj_pregleda='$brojPregleda' where id='$id'";
 $baza->selectDB($upit);
 $baza->zatvoriDB();
 
@@ -21,6 +21,9 @@ for($i=0; $i < strlen($tekst); $i++){
     elseif(ord($tekst[$i])==9)
         $tekst = substr_replace($tekst,'&nbsp;&nbsp;&nbsp;&nbsp;', $i, 1);
 }
+$slike = explode("\n", $clanak['slike']);
+$sli = explode(".",$slike[0]);
+$tekst = str_replace("{mosimage}", "<a href='slike/" . $sli[0] . ".jpg' data-lightbox='galerija'><img src='slike/" . $sli[0] . ".jpg' height='' width='200'></a>", $tekst);
 $godina = substr($clanak['kreirano'], 0, 4);
 $mjesec = substr($clanak['kreirano'], 5, 2);
 $dan = substr($clanak['kreirano'], 8, 2);
@@ -127,7 +130,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
 
         <div class="col-xl-12">
             <div class="view text-center clanakSlika mb-5">
-                    <img src="<?php echo $clanak['slika']?>" alt="Wide sample post image" class="img-fluid">
+                    <img src="<?php echo $clanak['naslovna_slika']?>" alt="Wide sample post image" class="img-fluid">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>

@@ -1,3 +1,3 @@
 $(document).ready(function(){
-    novaStranica("pismaCitatelja");
+    novaStranica("Pisma čitatelja");
 });

@@ -22,10 +22,10 @@ function dohvatiSve()
 {
     $db = new Baza();
     $db->spojiDB();
-    /*$upit = "select sadrzaj.id, naslov, kategorija.naziv kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from sadrzaj
-    join administrator on administrator.id = sadrzaj.autor join kategorija on kategorija.id = sadrzaj.kategorija";*/
-    $upit = "select sadrzaj.id, naslov, kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from sadrzaj
-    join administrator on administrator.id = sadrzaj.autor";
+    $upit = "select clanak.id, naslov, kategorija.naziv kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from clanak
+    join administrator on administrator.id = clanak.autor join kategorija on kategorija.id = clanak.kategorija";
+    /*$upit = "select sadrzaj.id, naslov, kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from sadrzaj
+    join administrator on administrator.id = sadrzaj.autor";*/
     $rezultat = $db->selectDB($upit);
     $clanci = array();
     while ($clanak = mysqli_fetch_assoc($rezultat)) {

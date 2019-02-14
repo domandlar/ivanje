@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr-hr" xml:lang="hr-hr">
 
 <head>
     <meta charset="utf-8">

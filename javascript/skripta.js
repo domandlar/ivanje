@@ -24,10 +24,8 @@ function ucitavanje() {
 }
 
 window.onscroll = function (ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        this.setTimeout(
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {        
         ucitavanje()
-        , 5000);
     }
 };
 
@@ -35,9 +33,12 @@ window.onscroll = function (ev) {
 
 function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, tekst) {
     autor = (alias == null || alias == '')? ime + ' ' + prezime : alias;
+    tekst = tekst.replace(/{mosimage}/g,"")
     if (!tekst.replace(/\s/g, '').length) {
         tekst = 'Fotogalerija';
     }
+    
+
     godina = vrijeme.substring(0, 4);
     mjesec = vrijeme.substring(5, 7);
     dan = vrijeme.substring(8, 10);
