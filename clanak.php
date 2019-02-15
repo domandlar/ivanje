@@ -10,41 +10,64 @@ $slikeRezultat = $baza->selectDB($upit);
 $clanak = mysqli_fetch_assoc($rezultat);
 $uvodniTekst = $clanak['uvodni_tekst'];
 if(preg_match('/{gallery/',$uvodniTekst)){
-    $pocetakGalerije = strpos($uvodniTekst, "{gallery");
-    $pocetakPutanjeGalerije = $pocetakGalerije + 16;
-    $duljinaPutanjeGalerije = strpos($uvodniTekst, "}")-strpos($uvodniTekst, "{gallery")-16;
-    $putanjaGalerije = substr($uvodniTekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
-    $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
-    $datoteke = scandir($punaPutanjaGalerije);
-    unset($datoteke[0]);
-    unset($datoteke[1]);
-    $datoteke = array_values($datoteke);
-    $galerija = "";
-    foreach($datoteke as $datoteka){
-        if(!preg_match('/.html/',$datoteka)){
+    $brojGalerija = substr_count($uvodniTekst,"{gallery");
+    for($i=0; $i < $brojGalerija; $i++){
+        $pocetakGalerije = strpos($uvodniTekst, "{gallery");
+        $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+        $duljinaPutanjeGalerije = strpos($uvodniTekst, "}")-strpos($uvodniTekst, "{gallery")-16;
+        $putanjaGalerije = substr($uvodniTekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+        $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+        $datoteke = scandir($punaPutanjaGalerije);
+        unset($datoteke[0]);
+        unset($datoteke[1]);
+        $datoteke = array_values($datoteke);
+        $galerija = "<div class='row lightboxSlike img-fluid mx-auto d-block'>";
+        foreach($datoteke as $datoteka){
+            if(!preg_match('/.html/',$datoteka)){
                 $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
+            }
         }
+        $galerija .= "</div>";
+        $uvodniTekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $uvodniTekst);
     }
-    $uvodniTekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $uvodniTekst);
+}
+if(preg_match('/src="/',$uvodniTekst)){
+    $pocetakSlike = strpos($uvodniTekst, "src=");
+    $pocetakPutanjeSlike = $pocetakSlike + 19;
+    $duljinaPutanjeSlike = strpos($uvodniTekst, "\" />")-strpos($uvodniTekst, "src=")-19;
+    $putanjaSlike = substr($uvodniTekst,$pocetakPutanjeSlike,$duljinaPutanjeSlike);
+    $punaPutanjaSlike = "./slike" . $putanjaSlike;
+    $uvodniTekst = str_replace("images/stories" . $putanjaSlike, $punaPutanjaSlike, $uvodniTekst);
 }
 $tekst = $clanak['tekst'];
 if(preg_match('/{gallery/',$tekst)){
-    $pocetakGalerije = strpos($tekst, "{gallery");
-    $pocetakPutanjeGalerije = $pocetakGalerije + 16;
-    $duljinaPutanjeGalerije = strpos($tekst, "}")-strpos($tekst, "{gallery")-16;
-    $putanjaGalerije = substr($tekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
-    $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
-    $datoteke = scandir($punaPutanjaGalerije);
-    unset($datoteke[0]);
-    unset($datoteke[1]);
-    $datoteke = array_values($datoteke);
-    $galerija = "";
-    foreach($datoteke as $datoteka){
-        if(!preg_match('/.html/',$datoteka)){
+    $brojGalerija = substr_count($tekst,"{gallery");
+    for($i=0; $i < $brojGalerija; $i++){
+        $pocetakGalerije = strpos($tekst, "{gallery");
+        $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+        $duljinaPutanjeGalerije = strpos($tekst, "}")-strpos($tekst, "{gallery")-16;
+        $putanjaGalerije = substr($tekst,$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+        $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+        $datoteke = scandir($punaPutanjaGalerije);
+        unset($datoteke[0]);
+        unset($datoteke[1]);
+        $datoteke = array_values($datoteke);
+        $galerija = "";
+        foreach($datoteke as $datoteka){
+            if(!preg_match('/.html/',$datoteka)){
                 $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
+            }
         }
+        $tekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $tekst);
     }
-    $tekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $tekst);
+}
+if(preg_match('/src="/',$tekst)){
+    $pocetakSlike = strpos($tekst, "src=");
+    $pocetakPutanjeSlike = $pocetakSlike + 19;
+    $duljinaPutanjeSlike = strpos($tekst, "\" />")-strpos($tekst, "src=")-19;
+    $putanjaSlike = substr($uvodniTekst,$pocetakPutanjeSlike,$duljinaPutanjeSlike);
+    $punaPutanjaSlike = "./slike" . $putanjaSlike;
+    $tekst = str_replace("images/stories" . $putanjaSlike, $punaPutanjaSlike, $tekst);
 }
 $brojPregleda = $clanak['broj_pregleda'] + 1;
 $upit = "update clanak set broj_pregleda='$brojPregleda' where id='$id'";

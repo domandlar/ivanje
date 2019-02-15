@@ -12,11 +12,18 @@ function ucitavanje() {
         url:"php/index.php?br=" + br + "&stranica=" + stranica,
         success:function(clanci){
             $.each(clanci, function(i, clanak){
+                uvodniTekst = clanak.uvodni_tekst;
+                uvodniTekst = uvodniTekst.replace(/<img[^>]*>/g,"");
+                uvodniTekst = uvodniTekst.replace(/{gallery stories\/Vijesti(\/\w*)*}/g,"");
+                uvodniTekst = uvodniTekst.replace(/<div[^>]*>[A-ZČĆĐŠŽa-zčćđšž\s]*/g,"")
+                uvodniTekst = $("<p>"+uvodniTekst+"</p>").text();
+
                 tekst = clanak.tekst;
                 tekst = clanak.tekst.replace(/<img[^>]*>/g,"");
+                tekst = tekst.replace(/{gallery stories\/Vijesti(\/\w*)*}/g,"");
                 tekst = tekst.replace(/<div[^>]*>[A-ZČĆĐŠŽa-zčćđšž\s]*/g,"")
                 tekst = $("<p>"+tekst+"</p>").text();
-                $("section").append(kreirajElement(clanak.id, clanak.kreirano, clanak.autor, clanak.autor_alias, clanak.ime, clanak.prezime, clanak.slika, clanak.naslov, tekst));
+                $("section").append(kreirajElement(clanak.id, clanak.kreirano, clanak.autor, clanak.autor_alias, clanak.ime, clanak.prezime, clanak.slika, clanak.naslov, uvodniTekst, tekst));
             })
         }
     })
@@ -31,9 +38,11 @@ window.onscroll = function (ev) {
 
 
 
-function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, tekst) {
+function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, uvodniTekst, tekst) {
     autor = (alias == null || alias == '')? ime + ' ' + prezime : alias;
     tekst = tekst.replace(/{mosimage}/g,"")
+    uvodniTekst = uvodniTekst.replace(/{mosimage}/g,"")
+    tekst = uvodniTekst == "" ? tekst : uvodniTekst;
     if (!tekst.replace(/\s/g, '').length) {
         tekst = 'Fotogalerija';
     }
