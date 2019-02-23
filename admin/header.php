@@ -10,6 +10,7 @@
     <link href="../css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="../css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="../img/logo.svg"/>
 </head>
 <body>
 	 <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">

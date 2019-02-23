@@ -12,7 +12,7 @@ include './header.php';
 ?>
 <main class="container">
     <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-5">Upravljanje Člancima</h2>
+    <h2 class="h1-responsive text-center my-5">Upravljanje člancima</h2>
     <div class="row">
       <div class="adminIkone">
       <a href="novi.php?mod=novi"><button class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button></a>
@@ -30,13 +30,13 @@ include './header.php';
           <option value="3">Planinarenje</option>
           <option value="4">Zanimljivosti</option>
         </select>
-        <label for="pocetak">Prikaz članaka od</label>
-        <input type="date" name="pocetak" id="pocetak">
+        <label for="pocetak">Prikaz članaka od     </label>
+        <input type="date" name="pocetak" id="pocetak" height="50px">
         <label for="kraj">Prikaz članaka do</label>
         <input type="date" name="kraj" id="kraj" class="datepicker">
       </div>
     </div>
-    <div class="row">
+    <div class="row container">
       <label for="">Redova po stranici</label>
       <select name="broj_redova" id="brRedova">
         <option value="10">10</option>
