@@ -69,7 +69,7 @@ function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, 
     element += '<p class="grey-text text-truncate">' + tekst + '</p>';
     element += '<p>Napisao/la';
     element += '<a class="font-weight-bold dark-grey-text"> ' + autor + '</a>, ' + datum + '</p>';
-    element += '<a class="btn btn-primary btn-md" href="clanak.php?clanak=' + id + '">Opširnije</a>';
+    element += '<a class="btn gumb btn-md" href="clanak.php?clanak=' + id + '">Opširnije</a>';
     element += '</div>';
     element += '</div>';
 
