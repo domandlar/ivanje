@@ -14,6 +14,7 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="img/logo.svg"/>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
     <!-- Navbar brand -->
     <a class="navbar-brand" href="index.php">
-	<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
+	<img border="0" alt="Ivanje Logo" src="img/logo21.png" width="60px" height="auto">
 	</a>
 
     <!-- Collapse button -->
@@ -42,9 +43,6 @@
                 <a class="nav-link" href="index.php">Naslovnica
                     <span class="sr-only">(current)</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Vijesti</a>
             </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
@@ -99,17 +97,17 @@
     <div class="carousel-inner" role="listbox">
         <!--First slide-->
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+            <img class="d-block w-100" src="img/Jelenska1-1.jpg" alt="Prva slika">
         </div>
         <!--/First slide-->
         <!--Second slide-->
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+            <img class="d-block w-100" src="img/Jelenska2-2.jpg" alt="Druga slika">
         </div>
         <!--/Second slide-->
         <!--Third slide-->
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+            <img class="d-block w-100" src="img/Jelenska3-2.jpg" alt="Treća slika">
         </div>
         <!--/Third slide-->
     </div>
@@ -127,6 +125,7 @@
 </div>
 <!--/.Carousel Wrapper-->
 <!--Section: Blog v.3-->
+<div class="reklame container"></div>
 <section class="py-4 container glavni">
 
     <!--Section heading-->
