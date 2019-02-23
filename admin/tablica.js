@@ -7,18 +7,18 @@ function stranicenje() {
     $("tbody tr:gt(" + (limitPoStranici - 1) + ")").hide();
     brojStranica = Math.ceil(brojRedaka / limitPoStranici);
     $("#tab-nav ul").html("");
-    $("#tab-nav ul").append("<li onclick='prethodnaStranica()'><a href='#'><span>&laquo;</span></a></li>");
-    $("#tab-nav ul").append("<li id='1' class='aktivno' onclick='azurirajStranicu(this.id)'><a href='#'>" + 1 + "</a></li>");
+    $("#tab-nav ul").append("<li onclick='prethodnaStranica()'><a href='#tablica'><span>&laquo;</span></a></li>");
+    $("#tab-nav ul").append("<li id='1' class='aktivno' onclick='azurirajStranicu(this.id)'><a href='#tablica'>" + 1 + "</a></li>");
 
     for (var i = 2; i <= brojStranica; i++) {
         if (i <= 5)
-            $("#tab-nav ul").append("<li id='" + i + "' onclick='azurirajStranicu(this.id)'> <a href='#'>" + i + "</a></li > ");
+            $("#tab-nav ul").append("<li id='" + i + "' onclick='azurirajStranicu(this.id)'> <a href='#tablica'>" + i + "</a></li > ");
         else {
-            $("#tab-nav ul").append("<li id='" + i + "' onclick='azurirajStranicu(this.id)' class='skriveno'> <a href='#'>" + i + "</a></li > ");
+            $("#tab-nav ul").append("<li id='" + i + "' onclick='azurirajStranicu(this.id)' class='skriveno'> <a href='#tablica'>" + i + "</a></li > ");
             $("#" + i).hide();
         }
     }
-    $("#tab-nav ul").append("<li onclick='sljedecaStranica()'><a href='#'><span>&raquo;</span></a></li>");
+    $("#tab-nav ul").append("<li onclick='sljedecaStranica()'><a href='#tablica'><span>&raquo;</span></a></li>");
 }
 function azurirajStranicu(id) {
     stranica = $("#" + id);

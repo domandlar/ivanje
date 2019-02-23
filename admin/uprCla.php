@@ -50,7 +50,7 @@ include './header.php';
             </ul>
       </nav>
     </div>
-    <table class="table table-hover tablica table-bordered">  
+    <table id="tablica" class="table table-hover tablica table-bordered">  
     <thead class="teal accent-1">
       <tr>
         <th><!-- Ovo je gumb za oznacit sve clanke odjednom. Treba sredit u skripti ili nes-->

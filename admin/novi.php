@@ -8,11 +8,15 @@ if ($_GET['mod'] == 'azuriranje') {
     $id = $_GET['id'];
     $db = new Baza();
     $db->spojiDB();
-    $upit = "select sadrzaj.id, naslov, alias, kategorija.naziv kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from sadrzaj
-    join administrator on administrator.id = sadrzaj.autor join kategorija on kategorija.id = sadrzaj.kategorija where sadrzaj.id='$id'";
-    $upit = "select * from sadrzaj where id='$id'";
+    $upit = "select clanak.id, naslov, naslovna_slika, autor_alias, uvodni_tekst, tekst, kategorija.id kategorija, administrator.ime ime, administrator.prezime prezime, kreirano, broj_pregleda from clanak
+    join administrator on administrator.id = clanak.autor join kategorija on kategorija.id = clanak.kategorija where clanak.id='$id'";
     $rezultat = $db->selectDB($upit);
     $clanak = mysqli_fetch_assoc($rezultat);
+    $upit = "select * from slike where clanak='$id'";
+    $rezultat = $db->selectDB($upit);
+    $slike = array();
+    while($slika = mysqli_fetch_assoc($rezultat))
+        $slike[] = $slika;
     $db->zatvoriDB();
 }
 
@@ -150,14 +154,13 @@ include './header.php';
                         <div class="form-group mb-5">
 							<label for="exampleFormControlTextarea1" class="">Napiši članak</label>
 							<textarea name="clanak" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" ><?php if ($_GET['mod'] == 'azuriranje') {
-    echo $clanak['tekst'];
+                            echo $clanak['tekst'];
 }
 ?></textarea>
 						</div>
 
                     </div>
                 </div>
-                <!--Grid row-->
                 <!--Grid row-->
                 <div class="row">
 
@@ -166,8 +169,24 @@ include './header.php';
 
                         <div class="form-group mb-5">
 							<label for="naslovnaSlika" class="">Naslovna slika</label>
-							<input type="file" name="naslovnaSlika" id="naslovnaSlika" >
+                            <input type="file" name="naslovnaSlika" id="naslovnaSlika">
+                            <input type="checkbox" name="promjenaNaslovneSlike" id="promjenaNaslovneSlike" style="display: none">
 						</div>
+
+                    </div>
+                </div>
+                 <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="form-group mb-5">
+                            <div id="prikazNaslovneSlike">
+                            <?php if($_GET['mod']=='azuriranje' && !empty($clanak['naslovna_slika'])) 
+                                    echo "<ul><li><input type='checkbox' id='ns' />
+                                    <label for='ns'><img src='../" . $clanak['naslovna_slika'] ."'/></label></li></ul>"; ?>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -182,6 +201,29 @@ include './header.php';
                             <input type="file" name="slike[]" id="slike" multiple>
 						</div>
 
+                    </div>
+                </div>
+                 <!--Grid row-->
+                 <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-12">
+    
+                        <div class="form-group mb-5">
+                            <div id="prikazStarihSlika">
+                                <ul>
+                            <?php if($_GET['mod']=='azuriranje' && !empty($slike)) 
+                                    foreach($slike as $slika)
+                                        echo "<li><input type='checkbox' id=" . $slika['id'] . " />
+                                        <label for=" . $slika['id'] . "><img src='../" . $slika['link'] ."'/></label></li>"; ?>
+                                </ul>
+                                <?php if($_GET['mod']=='azuriranje' && !empty($slike)) 
+                                        echo "<button type='button' id='obrisiSlike'>Oriši odabrane slike</button>"; ?>
+                            </div>
+                            <div id="prikazNovihSlika">
+                                
+                            </div>
+                        </div>
+    
                     </div>
                 </div>
 
@@ -204,5 +246,5 @@ include './header.php';
 <?php include './skripte.php';?>
 <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
-<!--script type="text/javascript" src="./novi.js"></script-->
+<script type="text/javascript" src="./novi.js"></script>
 <?php include './footer.php';

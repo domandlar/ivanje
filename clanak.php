@@ -23,7 +23,8 @@ if(preg_match('/{gallery/',$uvodniTekst)){
         $datoteke = array_values($datoteke);
         $galerija = "<div class='row lightboxSlike img-fluid mx-auto d-block'>";
         foreach($datoteke as $datoteka){
-            if(!preg_match('/.html/',$datoteka)){
+            $tipDatoteke = strtolower(pathinfo($datoteka, PATHINFO_EXTENSION));
+            if($tipDatoteke != "html" && $tipDatoteke != ""){
                 $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
             }
         }
@@ -52,12 +53,14 @@ if(preg_match('/{gallery/',$tekst)){
         unset($datoteke[0]);
         unset($datoteke[1]);
         $datoteke = array_values($datoteke);
-        $galerija = "";
+        $galerija = "<div class='row lightboxSlike img-fluid mx-auto d-block'>";
         foreach($datoteke as $datoteka){
-            if(!preg_match('/.html/',$datoteka)){
+            $tipDatoteke = strtolower(pathinfo($datoteka, PATHINFO_EXTENSION));
+            if($tipDatoteke != "html" && $tipDatoteke != ""){
                 $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
             }
         }
+        $galerija .= "</div>";
         $tekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $tekst);
     }
 }
@@ -69,18 +72,45 @@ if(preg_match('/src="/',$tekst)){
     $punaPutanjaSlike = "./slike" . $putanjaSlike;
     $tekst = str_replace("images/stories" . $putanjaSlike, $punaPutanjaSlike, $tekst);
 }
+if($clanak['naslovna_slika']==null || $clanak['naslovna_slika']==""){
+    if(preg_match("/{gallery stories\/Vijesti(\/\w*)*}/",$clanak['uvodni_tekst'])){
+        $pocetakGalerije = strpos($clanak['uvodni_tekst'], "{gallery");
+        $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+        $duljinaPutanjeGalerije = strpos($clanak['uvodni_tekst'], "}")-strpos($clanak['uvodni_tekst'], "{gallery")-16;
+        $putanjaGalerije = substr($clanak['uvodni_tekst'],$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+        $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+        $datoteke = scandir($punaPutanjaGalerije);
+        $i=1;
+        do{
+            $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
+        }while($tipDatoteke == "html" || $tipDatoteke == "");
+        $clanak['naslovna_slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+    }else if(preg_match("/{gallery stories\/Vijesti(\/\w*)*}/",$clanak['tekst'])){
+        $pocetakGalerije = strpos($clanak['tekst'], "{gallery");
+        $pocetakPutanjeGalerije = $pocetakGalerije + 16;
+        $duljinaPutanjeGalerije = strpos($clanak['tekst'], "}")-strpos($clanak['tekst'], "{gallery")-16;
+        $putanjaGalerije = substr($clanak['tekst'],$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
+        $punaPutanjaGalerije = "./slike" . $putanjaGalerije . "/";
+        $datoteke = scandir($punaPutanjaGalerije);
+        $i=1;
+        do{
+            $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
+        }while($tipDatoteke == "html" || $tipDatoteke == "");
+        $clanak['naslovna_slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+    }
+}
 $brojPregleda = $clanak['broj_pregleda'] + 1;
 $upit = "update clanak set broj_pregleda='$brojPregleda' where id='$id'";
 $baza->selectDB($upit);
 $baza->zatvoriDB();
 
-for($i=0; $i < strlen($tekst); $i++){
+/*for($i=0; $i < strlen($tekst); $i++){
     
     if(ord($tekst[$i])==10)
        $tekst = substr_replace($tekst,'<br>', $i, 1);
     elseif(ord($tekst[$i])==9)
         $tekst = substr_replace($tekst,'&nbsp;&nbsp;&nbsp;&nbsp;', $i, 1);
-}
+}*/
 $slike = explode("\n", $clanak['slike']);
 $sli = explode(".",$slike[0]);
 $tekst = str_replace("{mosimage}", "<a href='slike/" . $sli[0] . ".jpg' data-lightbox='galerija'><img src='slike/" . $sli[0] . ".jpg' height='' width='200'></a>", $tekst);
@@ -190,7 +220,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
 
         <div class="col-xl-12">
             <div class="view text-center clanakSlika mb-5">
-                    <img src="<?php echo $clanak['naslovna_slika']?>" alt="Wide sample post image" class="img-fluid">
+            <?php if($clanak['naslovna_slika'] != null) echo "<img src='" . $clanak['naslovna_slika'] . "' alt='Naslovna slika' class='img-fluid'>";?>
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -201,7 +231,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
     <div class="row">
 
         <div class="col-xl-3 col-md-3 col-sm-12 mb-3">
-            <p>Napisao/la <a class="font-weight-bold"><?php echo $clanak['ime'] . ' ' . $clanak['prezime'] ?></a>, <?php echo $datum?></p>
+            <p>Napisao/la <a class="font-weight-bold"><?php if($clanak['autor_alias'] !='') echo $clanak['autor_alias']; else echo $clanak['ime'] . ' ' . $clanak['prezime'] ?></a>, <?php echo $datum?></p>
         </div>
 
         <div class="col-xl-9 col-md-9 col-sm-12">

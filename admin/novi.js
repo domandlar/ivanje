@@ -4,56 +4,7 @@ $(document).ready(function () {
         
     }
     var kolekcijaSlika = [];
-    /*$("#slike").change(function(event){
-        var slike = event.target.files;
-        $.each(slike, function(i, slika){
-            kolekcijaSlika.push(slika);
-        });
-    });*/
-    /*$("form").submit(function () {
-        var forma = $(this),
-            url = forma.attr("action"),
-            type = forma.attr("method"),
-            data = new FormData();
-
-        forma.find("[name]").each(function (index, value) {
-            var input = $(this),
-                name = input.attr("name");   
-            var value = input.val();      
-            if(name=="slike[]"){
-                /*input.change(function() {
-                    var names = [];
-                    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-                        names.push($(this).get(0).files[i].name);
-                    }
-                    input.val(names);
-                }) //
-                //value = kolekcijaSlika;
-            }
-            
-            data.append(name, value);
-        });
-        $.ajax({
-            url: url,
-            type: type,
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                forma.find("input, select").val("");
-                nicEditors.findEditor( "exampleFormControlTextarea1" ).setContent("");
-                /*alert("Uspješno objavljeno.");
-                window.location.href="uprCla.php";//
-                console.log(response);
-            },
-            error: function(error){
-                alert("Neuspjela objava. Pokušajte ponovno.");
-                console.log(error);
-            }
-        });
-        //return false;
-    })*/
+    
 });
 function dohvatiParametar(parametar) {
     var sPageURL = window.location.href;
@@ -67,3 +18,46 @@ function dohvatiParametar(parametar) {
         }
     }
 };
+
+$('#naslovnaSlika').change( function(event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
+
+    $("#prikazNaslovneSlike").html("<ul><li><input type='checkbox' id='ns' /><label for='ns'><img src='" + URL.createObjectURL(event.target.files[0]) + "' /></label></li></ul>")
+    $("#promjenaNaslovneSlike").prop('checked', true);
+});
+$('#slike').change( function(event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
+    $("#prikazNovihSlika").html("<ul></ul>")
+    for(i=0;i<event.target.files.length;i++){
+        $("#prikazNovihSlika ul").append("<li><input type='checkbox' id=s" + i + " /><label for=s" + i+"><img src='" + URL.createObjectURL(event.target.files[i]) + "' /></label></li>")
+    }
+});
+$('#obrisiSlike').click(function(event){
+    event.preventDefault();
+    var odabraneSlike = $('input[type=checkbox]:checked').map(function(){
+        return this.id;
+    }).get().join(",");
+    clanak = dohvatiParametar("id")
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        url: "clanciApi.php?akcija=azurirajSlike&slike="+odabraneSlike+"&clanak="+clanak,
+        success: function(slike){
+            $("#prikazStarihSlika ul").html("")
+            $.each(slike, function(i, slika){
+                $("#prikazStarihSlika ul").append("<li><input type='checkbox' id=" + slika.id + " /><label for=" + slika.id + "><img src='../" + slika.link + "'/></label></li>")
+            })
+        }
+    })
+});
+$('form').submit(function(event){
+    greska = "";
+    if($('#name').val() == "")
+        greska += "Morate unijeti naziv.\n";
+    if($('#soflow').val() == "")
+        greska += "Morate odabrati kategoriju.";
+    if(greska != ""){
+        alert(greska);
+        event.preventDefault();
+    }
+})

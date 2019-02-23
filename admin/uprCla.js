@@ -60,21 +60,21 @@ $(document).ready(function () {
 });
 
 function dohvati(tip) {
+    $("tbody").html("");
     $.ajax({
         type: "get",
         dataType: "json",
         url: "clanciApi.php?akcija=" + tip,
         success: function (clanci) {
-            $("tbody").html("");
             $.each(clanci, function (i, clanak) {
                 ucitaj(clanak);
                 stranicenje();
             })
         }
     })
-    url= "clanciApi.php?akcija=" + tip;
 }
 function ucitaj(clanak) {
+    datum = clanak.kreirano.substring(0, 10);
     red = "<tr>";
     red += "<td>";
     red += "<div class='custom-control custom-checkbox'>";
@@ -82,10 +82,10 @@ function ucitaj(clanak) {
     red += "<label class='custom-control-label' for='cla" + clanak.id + "'></label>";
     red += "</div>";
     red += "</td>";
-    red += "<td class='font-weight-bold'><a href='#'>" + clanak.naslov + "</a></td>";
+    red += "<td class='font-weight-bold'><a href='novi.php?mod=azuriranje&id=" + clanak.id + "'>" + clanak.naslov + "</a></td>";
     red += "<td>" + clanak.kategorija + "</td>";
     red += "<td>" + clanak.ime + " " + clanak.prezime + "</td>";
-    red += "<td>" + clanak.kreirano + "</td>";
+    red += "<td>" + datum + "</td>";
     red += "<td>" + clanak.broj_pregleda + "</td>";
     red += "</tr>";
 

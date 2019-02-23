@@ -1,5 +1,5 @@
 <!--Footer-->
-<footer class="page-footer font-small teal pt-4 mt-4">
+<footer class="page-footer font-small teal pt-4 mt-4" style='data-position="fixed"'>
 
 
 
