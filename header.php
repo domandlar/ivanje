@@ -14,6 +14,7 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="img/logo.svg"/>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
 <!-- Navbar brand -->
 <a class="navbar-brand" href="index.php">
-<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
+<img border="0" alt="Ivanje Logo" src="img/logo21.png" width="60px" height="auto">
 </a>
 
 <!-- Collapse button -->
@@ -42,9 +43,6 @@
             <a class="nav-link" href="index.php">Naslovnica
                 <span class="sr-only">(current)</span>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php">Vijesti</a>
         </li>
         <!-- Dropdown -->
         <li class="nav-item dropdown">

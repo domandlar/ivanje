@@ -52,12 +52,13 @@ if(preg_match('/{gallery/',$tekst)){
         unset($datoteke[0]);
         unset($datoteke[1]);
         $datoteke = array_values($datoteke);
-        $galerija = "";
+        $galerija = "<div class='row lightboxSlike img-fluid mx-auto d-block'>";
         foreach($datoteke as $datoteka){
             if(!preg_match('/.html/',$datoteka)){
                 $galerija .= "<a href='" . $punaPutanjaGalerije . $datoteka . "' data-lightbox='galerija'><img src='" . $punaPutanjaGalerije . $datoteka . "' height='' width='200'></a>";
             }
         }
+        $galerija .= "</div>";
         $tekst = str_replace("{gallery stories" . $putanjaGalerije . "}", $galerija, $tekst);
     }
 }
@@ -119,8 +120,8 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
  <nav class="navbar navbar-expand-lg navbar-dark teal sticky-top">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="index.html">
-	<img border="0" alt="Ivanje Logo" src="img/logo2.png" width="60px" height="auto">
+    <a class="navbar-brand" href="index.php">
+	<img border="0" alt="Ivanje Logo" src="img/logo21.png" width="60px" height="auto">
 	</a>
 
     <!-- Collapse button -->
@@ -135,7 +136,7 @@ while($slika = mysqli_fetch_assoc($slikeRezultat))
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">Naslovnica
+                <a class="nav-link" href="index.php">Naslovnica
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
