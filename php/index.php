@@ -30,29 +30,34 @@ while($clanak = mysqli_fetch_assoc($rezultat)){
             $duljinaPutanjeGalerije = strpos($clanak['uvodni_tekst'], "}")-strpos($clanak['uvodni_tekst'], "{gallery")-16;
             $putanjaGalerije = substr($clanak['uvodni_tekst'],$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
             $punaPutanjaGalerije = "../slike" . $putanjaGalerije . "/";
-            $datoteke = scandir($punaPutanjaGalerije);
-            $i=1;
-            do{
-                $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
-            }while($tipDatoteke == "html" || $tipDatoteke == "");
-            $clanak['slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+            if(file_exists($punaPutanjaGalerije)){
+                $datoteke = scandir($punaPutanjaGalerije);
+                $i=1;
+                do{
+                    $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
+                }while($tipDatoteke == "html" || $tipDatoteke == "");
+                $clanak['slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+            }
         }else if(preg_match("/{gallery stories\/Vijesti(\/\w*)*}/",$clanak['tekst'])){
             $pocetakGalerije = strpos($clanak['tekst'], "{gallery");
             $pocetakPutanjeGalerije = $pocetakGalerije + 16;
             $duljinaPutanjeGalerije = strpos($clanak['tekst'], "}")-strpos($clanak['tekst'], "{gallery")-16;
             $putanjaGalerije = substr($clanak['tekst'],$pocetakPutanjeGalerije,$duljinaPutanjeGalerije);
             $punaPutanjaGalerije = "../slike" . $putanjaGalerije . "/";
-            $datoteke = scandir($punaPutanjaGalerije);
-            $i=1;
-            do{
-                $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
-            }while($tipDatoteke == "html" || $tipDatoteke == "");
-            $clanak['slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+            if(file_exists($punaPutanjaGalerije)){
+                $datoteke = scandir($punaPutanjaGalerije);
+                $i=1;
+                do{
+                    $tipDatoteke = strtolower(pathinfo($datoteke[++$i], PATHINFO_EXTENSION));
+                }while($tipDatoteke == "html" || $tipDatoteke == "");
+                $clanak['slika'] = "slike" . $putanjaGalerije . "/" . $datoteke[$i];
+            }
         }
     }
     $clanci[] = $clanak;
 }
 $baza->zatvoriDB();
 echo json_encode($clanci);
-
+//$rez = $kategorijaId . " " . $stranica;
+//echo $rez;
 ?>

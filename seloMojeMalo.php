@@ -5,7 +5,7 @@ include 'header.php';
 <section class="py-4 container glavni">
 
     <!--Section heading-->
-    <h2 class="h1 text-center mb-5">Ciljevi</h2>
+    <h2 class="h1 text-center mb-5">Selo moje malo</h2>
 
 
 
@@ -40,7 +40,7 @@ include 'header.php';
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
     <script type="text/javascript" src="javascript/skripta.js"></script>
-    <script type="text/javascript" src="javascript/ciljevi.js"></script>
+    <script type="text/javascript" src="javascript/seloMojeMalo.js"></script>
 </body>
 
 </html>

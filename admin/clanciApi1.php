@@ -75,19 +75,19 @@ function obrisi()
     echo json_encode("");
 }
 function objaviNovi(){
+    $naziv = $_POST['name'];
+    $alias = $_POST['alias'];
+    $kategorija = $_POST['kategorija'];
+    $clanak = $_POST['clanak'];
     $db = new Baza();
-    $db->spojiDB();
-    $naziv = mysqli_real_escape_string($db->veza, $_POST['name']);
-    $alias =  mysqli_real_escape_string($db->veza, $_POST['alias']);
-    $kategorija =  mysqli_real_escape_string($db->veza, $_POST['kategorija']);
-    $clanak =  mysqli_real_escape_string($db->veza, $_POST['clanak']);
-    $autor =  mysqli_real_escape_string($db->veza, $_COOKIE['SESIJA']);
+    $autor = $_COOKIE['SESIJA'];
     $kreirano = date('Y:m:d H:i:s');
+    $db->spojiDB();
     $upit = "select id from administrator where korisnicko_ime = '$autor'";
     $rezultat = $db->selectDB($upit);
     $autor = mysqli_fetch_assoc($rezultat);
     $autor = $autor['id'];
-    $naslovnaSlika = "";
+    $naslovnaSlika = null;
     if (isset($_FILES['naslovnaSlika'])) {
         if (!empty($_FILES['naslovnaSlika']['name'][0])) {
             $putanja = "../slike/Vijesti/" . date("Y/");
@@ -108,8 +108,8 @@ function objaviNovi(){
         }
     }
 
-    $upit = "INSERT INTO clanak (naslov, naslov_alias, uvodni_tekst, tekst, naslovna_slika, slike, kategorija, kreirano, autor, autor_alias, azurirano, azurirano_od, broj_pregleda) values
-    ('$naziv', '', '', '$clanak', '$naslovnaSlika', '', '$kategorija', '$kreirano', '$autor', '$alias', DEFAULT, 0, 0)";
+    $upit = "insert into clanak (naslov, tekst, naslovna_slika, kategorija, kreirano, autor, autor_alias) values
+    ('$naziv', '$clanak', '$naslovnaSlika', '$kategorija', '$kreirano', '$autor', '$alias')";
     $db->selectDB($upit);
     $upit = "select id from clanak order by 1 desc limit 1";
     $rezultat = $db->selectDB($upit);
@@ -119,12 +119,6 @@ function objaviNovi(){
     if (isset($_FILES['slike'])) {
         if (!empty($_FILES['slike']['name'][0])) {
             for ($i = 0; $i < sizeof($_FILES['slike']['name']); $i++) {
-                $putanja = "../slike/Vijesti/" . date("Y/");
-                if(!file_exists($putanja))
-                    mkdir($putanja);
-                $putanja = "../slike/Vijesti/" . date("Y/Ym/");
-                if(!file_exists($putanja))
-                    mkdir($putanja);
                 $putanja = "../slike/Vijesti/" . date("Y/Ym/Ymd/");
                 if(!file_exists($putanja))
                     mkdir($putanja);
@@ -146,13 +140,14 @@ function objaviNovi(){
 function azuriraj(){
     $db = new Baza();
     $db->spojiDB();
-    $id = mysqli_real_escape_string($db->veza, $_POST['id']);
-    $naslov = mysqli_real_escape_string($db->veza, $_POST['name']);
-    $alias = mysqli_real_escape_string($db->veza, $_POST['alias']);
-    $kategorija = mysqli_real_escape_string($db->veza, $_POST['kategorija']);
-    $tekst = mysqli_real_escape_string($db->veza, $_POST['clanak']);
+    $id = $_POST['id'];
+    $naslov = $_POST['name'];
+    $alias = $_POST['alias'];
+    $kategorija = $_POST['kategorija'];
+    $tekst = $_POST['clanak'];
     $azurirano = date('Y:m:d H:i:s');
-    $autor = mysqli_real_escape_string($db->veza, $_COOKIE['SESIJA']);
+    $autor = $_COOKIE['SESIJA'];
+    $kreirano = date('Y:m:d H:i:s');
     $db->spojiDB();
     $upit = "select id from administrator where korisnicko_ime = '$autor'";
     $rezultat = $db->selectDB($upit);

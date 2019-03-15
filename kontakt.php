@@ -64,12 +64,7 @@ include 'header.php';
       <div class="row text-center">
        
         
-        <div class="col-md-12">
-          <a class="btn-floating">
-            <i class="fa fa-envelope"></i>
-          </a>
-          <p>info@ivanje.hr</p>
-        </div>
+      
       </div>
 
     </div>

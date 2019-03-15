@@ -37,7 +37,9 @@ section h2{
 	text-align:center;
 	border-radius:10px;
 	max-width:100%;
-	height:auto;
+	width:200px;
+	height:150px;
+	object-fit:cover;
 }
 .lightboxSlike a{
 	
@@ -117,22 +119,51 @@ select#soflow{
 	height: inherit;
 }
 #tab-nav ul li{
-	background-color: rgba(218, 210, 210, 0.719);
+	background-color: #007bff;
 	font-size: 18px;
 	width: 30px;
 	height: inherit;
 	border-radius: 3px;
-	border: 0.5px black solid;
+	border: 0.5px #007bff solid;
 	float: left;
 	text-align: center;
+	margin:0 5px;
+}
+#tab-nav ul li:hover{
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 #tab-nav ul li a{
 	margin-top: 5px;
+	color:white;
 }
 #tab-nav ul .aktivno{
-	background-color: rgb(0, 102, 255);
+	background-color: rgb(10, 10, 255);
 }
 th{
 	cursor: pointer;
 }
-
+/*Slike u starim člancima*/
+td img{
+	
+}
+.gumboviAdmin{
+    justify-content:center;
+}
+.gumb{
+    /*background-color:#7c1b00;*/
+    background-color:#D1481D;
+    border-radius:9px;
+}
+.reklame{
+    height:400px;
+    width:100%;
+    background-image:url("../img/Reklame.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.clanakSlika img{
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+    border-radius:10px;
+}

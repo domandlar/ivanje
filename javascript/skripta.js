@@ -17,17 +17,22 @@ function ucitavanje() {
                 tekst = clanak.tekst;
                 if (naslovnaSlika == null || naslovnaSlika == "") {
                     test = new RegExp(/<img[^>]*>/g)
-                    test2 = new RegExp(/{gallery stories\/Vijesti(\/\w*)*}/g)
                     if (test.test(uvodniTekst)) {
-                        s = uvodniTekst.substring(uvodniTekst.indexOf("<img"));
-                        s = uvodniTekst.substring(uvodniTekst.indexOf("src=") + 19);
-                        s = s.substring(0, s.indexOf("\" />"));
-                        naslovnaSlika = "slike" + s;
+                        slika = uvodniTekst.substring(uvodniTekst.indexOf("<img"));
+                        putanjaSlike = slika.substring(slika.indexOf("src=")+5, slika.indexOf(".jpg")+4);
+                        if(putanjaSlike.indexOf("/Vijesti") != -1)
+                            putanjaSlike = putanjaSlike.substring(putanjaSlike.indexOf("/Vijesti"));
+                        else if(putanjaSlike.indexOf("images/") != -1)
+                            putanjaSlike = putanjaSlike.substring(putanjaSlike.indexOf("images/")+6);
+                        naslovnaSlika = "slike" + putanjaSlike;
                     } else if (test.test(tekst)) {
-                        s = tekst.substring(tekst.indexOf("<img"));
-                        s = tekst.substring(tekst.indexOf("src=") + 19);
-                        s = s.substring(0, s.indexOf("\" />"));
-                        naslovnaSlika = "slike" + s;
+                        slika = tekst.substring(tekst.indexOf("<img"));
+                        putanjaSlike = slika.substring(slika.indexOf("src=")+5, slika.indexOf(".jpg")+4);
+                        if(putanjaSlike.indexOf("/Vijesti") != -1)
+                            putanjaSlike = putanjaSlike.substring(putanjaSlike.indexOf("/Vijesti"));
+                        else if(putanjaSlike.indexOf("images/") != -1)
+                            putanjaSlike = putanjaSlike.substring(putanjaSlike.indexOf("images/")+6);
+                        naslovnaSlika = "slike" + putanjaSlike;
                     } else if (clanak.slika != "") {
                         naslovnaSlika = clanak.slika;
                     }
@@ -49,18 +54,17 @@ function ucitavanje() {
     })
     br++;
 }
-
-/*window.onscroll = function (ev) {
+window.onscroll = function (ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {        
         ucitavanje()
     }
-};*/
+};/*
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
         ucitavanje();
     }
     //FIXME: popravit učitavanje na mobitelima
-});
+});*/
 
 
 
@@ -73,7 +77,6 @@ function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, 
         tekst = 'Fotogalerija';
     }
 
-
     godina = vrijeme.substring(0, 4);
     mjesec = vrijeme.substring(5, 7);
     dan = vrijeme.substring(8, 10);
@@ -82,20 +85,22 @@ function kreirajElement(id, vrijeme, autor, alias, ime, prezime, slika, naslov, 
     element += '<div class="col-lg-5 col-xl-4 mb-4">';
     element += '<div class="view overlay rounded z-depth-1-half">';
     if (slika != null)
-        element += '<img src="' + slika + '" class="img-fluid" alt="' + naslov + '">';
-    element += '<a>';
+        element += '<img src="' + slika + '" class="img-fluid" alt="' + naslov + '" style="border-radius:10px; max-width:100%; width:350px; height:220px; object-fit:cover;">';
+    element += '<a href="clanak.php?clanak=' + id + '">';
     element += '<div class="mask rgba-white-slight"></div>';
     element += '</a>';
     element += '</div>';
     element += '</div>';
     element += '<div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">';
     element += '<h3 class="mb-3 font-weight-bold dark-grey-text">';
+    element += '<a href="clanak.php?clanak=' + id + '" style="color:#009688;">';
     element += '<strong>' + naslov + '</strong>';
+    element += '</a>';
     element += '</h3>';
     element += '<p class="grey-text text-truncate">' + tekst + '</p>';
     element += '<p>Napisao/la';
     element += '<a class="font-weight-bold dark-grey-text"> ' + autor + '</a>, ' + datum + '</p>';
-    element += '<a class="btn btn-primary btn-md" href="clanak.php?clanak=' + id + '">Opširnije</a>';
+    element += '<a class="btn gumb btn-md" href="clanak.php?clanak=' + id + '">Opširnije</a>';
     element += '</div>';
     element += '</div>';
 

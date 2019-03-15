@@ -30,8 +30,7 @@ include './header.php';
                     <!--Grid column-->
                     <div class="col-md-5">
                         <div class="md-form mb-0">
-                            <input type="text" id="name" name="ime" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['ime'] . "' " ?>>
-                            <label for="name" class="">Ime</label>
+                            <input type="text" id="name" name="ime" placeholder="Ime" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['ime'] . "' " ?>>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -44,8 +43,7 @@ include './header.php';
                     <!--Grid column-->
                     <div class="col-md-5">
                         <div class="md-form mb-0">
-                            <input type="text" id="prezime" name="prezime" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['prezime'] . "' " ?>>
-                            <label for="surname" class="">Prezime</label>
+                            <input type="text" id="prezime" name="prezime" placeholder="Prezime" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['prezime'] . "' " ?>>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -54,14 +52,12 @@ include './header.php';
 				<div class="row">
 					<div class="col-md-5"> 
 						<div class="md-form mb-0">
-							<input type="text" id="korIme" name="korisnickoIme" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['korisnicko_ime'] . "' " ?>>
-							<label for="korIme">Korisničko ime</label>
+							<input type="text" id="korIme" name="korisnickoIme" placeholder="Korisničko ime" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['korisnicko_ime'] . "' " ?>>
 						</div>
                     </div>
                     <div class="col-md-5"> 
 						<div class="md-form mb-0">
-							<input type="text" id="email" name="email" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['email'] . "' " ?>>
-							<label for="email">E-mail</label>
+							<input type="text" id="email" name="email" placeholder="E-mail" class="form-control" <?php if($_GET['mod']=='moj') echo "value='" . $korisnik['email'] . "' " ?>>
 						</div>
 					</div>
 				</div>

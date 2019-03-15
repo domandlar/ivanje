@@ -3,11 +3,11 @@
 class Baza {
 
     const server = "localhost";
-    const korisnik = "root";
-    const lozinka = "";
-    const baza = "ivanje";
+    const korisnik = "gornjaj";
+    const lozinka = "Gornja2008";
+    const baza = "gornjaj_new";
 
-    private $veza = null;
+    public $veza = null;
     private $greska = '';
 
     function spojiDB() {

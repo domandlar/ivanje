@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Gornja Jelenska</title>
+    <title>Udruga "Ivanje" - Gornja Jelenska</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -49,6 +49,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zanimljivosti</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="izPovijesti.php">Iz povijesti</a>
+                    <a class="dropdown-item" href="seloMojeMalo.php">Selo moje malo</a>
                     <a class="dropdown-item" href="likovnik.php">Likovnik</a>
                     <a class="dropdown-item" href="pismaCitatelja.php">Pisma čitatelja</a>
 					<a class="dropdown-item" href="priceIzNasihZivota.php">Priče iz naših života</a>

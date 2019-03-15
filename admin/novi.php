@@ -87,6 +87,7 @@ include './header.php';
                         <div class="md-form mb-0 ">
                             <select name="kategorija" id="soflow">
                             <option value="" hidden>Kategorija</option>
+                            <optgroup label="Vijesti">
                             <option value="1" <?php if ($_GET['mod'] == 'azuriranje' && $clanak['kategorija'] == 1) {
     echo "selected";
 }
@@ -244,7 +245,7 @@ include './header.php';
 	</main>
 
 <?php include './skripte.php';?>
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script src="../js/nicEdit.js" type="text/javascript"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 <script type="text/javascript" src="./novi.js"></script>
 <?php include './footer.php';
